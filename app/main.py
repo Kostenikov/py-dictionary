@@ -30,10 +30,9 @@ class Dictionary:
 
         while self.bucket[index] is not None and key != self.bucket[index][0]:
             index = (index + 1) % self.bucket_size
-        try:
-            return self.bucket[index][1]
-        except TypeError:
+        if self.bucket[index] is None:
             raise KeyError(key)
+        return self.bucket[index][1]
 
     def __len__(self) -> int:
         return self.length
